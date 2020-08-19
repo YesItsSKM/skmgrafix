@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>skmgrafix | HOME</title>
+    <title>skmgrafix | WELCOME</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
@@ -35,7 +35,7 @@
 			 loading-screen="enabled:true;
 			 		 dotsColor: red;
 					 backgroundColor: black" 
-			 raycaster = "far: 100; objects: [link];" cursor="rayOrigin: mouse" camera-position>
+			 raycaster = "far: 100;" cursor="rayOrigin: mouse" camera-position>
 		
 		<a-assets>
 			<img id = "sky" src = "hdr.jpg">
@@ -63,7 +63,6 @@
 						  color: white;
 						  blending: additive;"
 			  
-			
 			  animation__click="property: scale; from: 0.05 0.05 0.05; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: click"
 			  animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
 			  animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing">
@@ -82,7 +81,7 @@
 						  opacity: 0.9;
 						  align: center;
 						  wrapCount: 20;
-						 font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/vt323/VT323-Regular.json"
+						  font: https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/vt323/VT323-Regular.json"
 				  geometry = "primitive: plane;
 							  width: auto;
 							  height: auto;"
