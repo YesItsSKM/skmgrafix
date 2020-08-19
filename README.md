@@ -1,2 +1,2 @@
 # skmgrafix
-Virtual Reality portfolio website
+Virtual Reality portfolio website.
