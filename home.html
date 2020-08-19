@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>skmgrafix | HOME</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+	
+	<script type="text/javascript">
+	  AFRAME.registerComponent('navigate-on-click', {
+		schema: {
+		  url: {default: ''}
+		},
+
+		init: function () {
+		  var data = this.data;
+		  var el = this.el;
+
+		  el.addEventListener('click', function () {
+			window.location.href = data.url;
+		  });
+		}
+	  });
+	</script>
+	
+	<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+	<script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
+	
+	<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> 
+	
+<!--	<script src="https://wizgrav.github.io/aframe-effects/dist/aframe-effects.min.js"></script>-->
+
+</head>
+
+<body>
+	
+    <a-scene stats
+			 loading-screen="enabled:true;
+							 dotsColor: red;
+							 backgroundColor: black" 
+			 fog = "type: linear;
+					color: #0077b6;
+					far: 1800;
+					near: 100"
+			 raycaster = "far: 100; objects: [link];" cursor="rayOrigin: mouse" camera-position>
+		
+		<a-assets>
+			<a-asset-item id = "base" src = "models/Environment.glb"></a-asset-item>
+			<a-asset-item id = "pedestal" src = "models/Pedestal.glb"></a-asset-item>
+
+			<img id = "sky" src = "hdr.jpg">
+
+			<img id = "screen_gif" src = "gifs/screen.gif">
+			<img id = "rotating_sphere_gif" src = "gifs/9xl7.gif">
+			<img id = "floor_gif" src = "gifs/MPiJ.gif">
+			<img id = "link_img" src = "imgs/link-test">
+			<img id="cursor_img" src="image.png">
+			
+			<audio id = "ambient_sound" src = "sound/letting_go.mp3" preload="auto"></audio>
+		</a-assets>
+		
+		<a-sky src = "#sky" radius = "600"
+			    animation = "property: rotation;
+							to: 0 -360 0;
+							dur: 1000000;
+							easing: linear;
+							loop: true">
+		</a-sky>
+		
+		<!-- Camera + cursor. -->
+		<a-entity id="cameraRig" position="900 25 0" rotation = "0 90 0"
+				   animation = "property: position;
+							to: 0 25 0;
+							dur: 4000;
+							easing: easeInOutCubic;">
+			<a-camera id = "cam" look-controls wasd-controls="acceleration: 1000;" user-height = "0 1.6 0">
+				
+			<a-cursor
+			  id="cursor"
+			  geometry = "primitive: circle;
+						  radius: 0.6"
+			  scale = "0.1 0.1 1"
+			  material = "src: url(imgs/cursor.png);
+						  shading : flat;
+						  color: white;
+						  blending: additive;"
+			  
+			
+			  animation__click="property: scale; from: 0.05 0.05 0.05; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: click"
+			  animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
+			  animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing">
+			</a-cursor>
+				<a-cylinder height = "2"
+						radius = ".5"
+						color = "#ffffff"
+						statsic-body ></a-cylinder>
+			</a-camera> <!-- /camera -->
+		</a-entity>
+		
+		<a-entity gltf-model = "#pedestal" position = "0 20 0" rotation = "0 0 0"
+				  
+				  animation = "property: rotation;
+							to: 0 -360 0;
+							dur: 100000;
+							easing: linear;
+							loop: true">
+		</a-entity>
+		
+		<!-- LINK -->
+			<a-entity
+				geometry="primitive: circle;
+						  radius: 5;"
+				 material="shader:gif;
+						   src:url(gifs/portal.gif);
+						   side: double;
+						   blending: additive;
+						   opacity: 0.9"
+				position = "15 30 -5"
+				rotation = "0 -90 0"
+				
+			    look-at = "#cam"
+					  
+				navigate-on-click="url: /img_gallery.html">
+			</a-entity>
+		
+		<a-entity gltf-model = "#base" position = "0 20 0" rotation = "0 0 0">
+			<a-entity
+				  geometry="primitive: circle; radius: 52;"
+				  material="shader:gif; src:url(gifs/MPiJ.gif); side: double;
+							opacity: 0.8" gif=""
+				  rotation = "90 0 0">
+			</a-entity>
+			
+			<a-entity sound = "src: #ambient_sound; autoplay: true; volume: 2; loop: true;"
+					  position = "0 1 0">
+			</a-entity>
+		</a-entity>
+		
+		<a-entity
+				  geometry="primitive:plane; height:12; width:20;"
+				  material="shader:gif; src:#screen_gif; side: double;
+							opacity: 0.9; blending: additive" gif=""
+				  position = "-10 30 15" rotation = "0 -60 0"
+				  
+				  navigate-on-click = "url: https://www.youtube.com/embed/RUaHGThT1P0?rel=0&autoplay=1">
+		</a-entity>
+		
+		<a-entity
+				  geometry="primitive: sphere; radius: 8;"
+				  material="shader:gif; src: #rotating_sphere_gif; side: double;
+							opacity: 0.9; blending: additive" gif=""
+				  position = "-5 30 -20" rotation = "0 30 0"
+				  
+				  animation = "property: rotation;
+							to: 0 -360 0;
+							dur: 50000;
+							easing: linear;
+							loop: true">
+		</a-entity>
+		
+		<a-entity text = "value: Shubham Kumar Maurya;
+						  color: #ffffff;
+						  shader: msdf;
+						  opacity: 0.9;
+						 font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/vt323/VT323-Regular.json"
+				  look-at = "#cam"
+				  position = "-20 30 -15"
+				  rotation = "0 90 0"
+				  scale = "40 40 40">
+		</a-entity>
+
+    </a-scene>
+	
+</body>
+
+</html>

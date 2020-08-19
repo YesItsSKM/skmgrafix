@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>skmgrafix | Image Gallery</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+	
+	<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+	
+	<script src="https://unpkg.com/aframe-simple-link-component/dist/aframe-simple-link-component.min.js"></script>
+	
+	<script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+	
+	<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+	<script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
+	
+	<!--			Template for cards -->
+			<script id = "link" type = "text/html">
+				<a-entity class="link"
+					  geometry = "primitive: plane;
+								  witdh: 1;
+								  height: 1;"
+					  material = "shader: flat;
+								  src: ${thumb};
+								  side: double;"
+					  sound = "on: click;
+							   src: #click-sound"
+					  look-at  = "#cam"
+						  		  
+					  event-set__mouseenter = "scale: 1.2 1.2 1;"
+					  event-set__mouseleave = "scale: 1 1 1"
+					  event-set__click = "_target: #image-360;
+										  _delay: 300;
+										  material.src: ${src}"
+					  proxy-event="event: click; to: #image-360; as: fade">
+				</a-entity>
+			</script>
+	
+		<script type="text/javascript">
+		  AFRAME.registerComponent('navigate-on-click', {
+			schema: {
+			  url: {default: ''}
+			},
+
+			init: function () {
+			  var data = this.data;
+			  var el = this.el;
+
+			  el.addEventListener('click', function () {
+				window.location.href = data.url;
+			  });
+			}
+		  });
+		</script>
+</head>
+	
+	<a-scene loading-screen="enabled:true;
+							 dotsColor: red;
+							 backgroundColor: black"
+			 stats>
+		
+		<a-assets>
+			
+			<audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+
+			<!-- Images. -->
+			<img id="blackhole" src="imgs/360/BlackHole.jpg">
+			<img id="blackhole-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
+			<img id="desert" src="imgs/360/360-Test.jpg">
+			<img id="desert-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
+			
+			<img id="link_img" src="hdr.jpg"> 
+			
+		</a-assets>
+
+  <!-- 360-degree image. -->
+  		<a-sky id="image-360" radius="100" src="#blackhole"
+			   animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
+			   animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"
+			   _delay = "300"
+			   animation = "property: rotation;
+							to: 0 -360 0;
+							dur: 1000000;
+							easing: linear;
+							loop: true"></a-sky>
+		
+	<!-- LINK -->
+			<a-entity
+				geometry="primitive: circle;
+						  radius: 1;"
+				 material="shader:gif;
+						   src:url(gifs/portal.gif);
+						   side: double;
+						   blending: additive;
+						   opacity: 0.9"
+				position = "0 2 4"
+				rotation = "0 0 0"
+				
+			    look-at = "#cam"
+					  
+				navigate-on-click="url: /home.html">
+			</a-entity>
+		
+		<a-entity id = "links"
+				  layout = "type: circle;
+							radius: 1;
+							align: center;"
+				  position = "0 1 -3">
+			<a-entity template = "src: #link" data-thumb = "#blackhole-thumb" data-src = "#blackhole"></a-entity>
+			<a-entity template = "src: #link" data-thumb = "#desert-thumb" data-src = "#desert"></a-entity>
+		</a-entity>
+
+  <!-- Camera + Cursor. -->
+		<a-camera id = "cam"
+				  looks-control
+				  wasd-controls = "acceleration:100">
+		  <a-cursor
+			  id="cursor"
+			  geometry = "primitive: circle;
+						  radius: 0.6"
+			  scale = "0.1 0.1 1"
+			  material = "src: url(imgs/cursor.png);
+						  shading : flat;
+						  color: white;
+						  blending: additive;"
+			  
+			
+			  animation__click="property: scale; from: 0.05 0.05 0.05; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: click"
+			  animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
+			  animation__fusing="property: scale; from: 0.1 0.1 0.1; to: 0.05 0.05 0.05; easing: easeInCubic; dur: 150; startEvents: fusing">
+			</a-cursor>
+		</a-camera>
+	</a-scene>
+
+</html>
