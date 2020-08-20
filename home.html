@@ -36,10 +36,7 @@
 	<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
 	<script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
 	
-	<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> 
-	
-<!--	<script src="https://wizgrav.github.io/aframe-effects/dist/aframe-effects.min.js"></script>-->
-
+	<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
 </head>
 
 <body style = "background-color: black;">
@@ -125,6 +122,21 @@
 			    look-at = "#cam"
 					  
 				navigate-on-click="url: ./img_gallery.html">
+				<a-entity 
+				  text = "value: \nIMAGE GALLERY;
+						  color: #ffffff;
+						  shader: msdf;
+						  opacity: 0.9;
+						  align: center;
+						  wrapCount: 40;
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserrat/Montserrat-Regular.json"
+				  material = "shader: flat;
+							  opacity: 0"
+				  look-at = "#cam"
+				  position = "0 0 0"
+				  rotation = "0 0 0"
+				  scale = "20 20 20">
+				</a-entity>							
 			</a-entity>
 		
 		<a-entity gltf-model = "#base" position = "0 20 0" rotation = "0 0 0">
@@ -166,7 +178,7 @@
 						  color: #ffffff;
 						  shader: msdf;
 						  opacity: 0.9;
-						 font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/vt323/VT323-Regular.json"
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/vt323/VT323-Regular.json"
 				  look-at = "#cam"
 				  position = "-20 30 -15"
 				  rotation = "0 90 0"
