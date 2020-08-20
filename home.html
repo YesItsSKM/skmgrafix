@@ -49,13 +49,13 @@
 					color: #0077b6;
 					far: 1800;
 					near: 100"
-			 raycaster = "far: 100; objects: [link];" cursor="rayOrigin: mouse" camera-position>
+			 raycaster = "far: 100;" cursor="rayOrigin: mouse" camera-position>
 		
 		<a-assets>
 			<a-asset-item id = "base" src = "models/Environment.glb"></a-asset-item>
 			<a-asset-item id = "pedestal" src = "models/Pedestal.glb"></a-asset-item>
 
-			<img id = "sky" src = "hdr.jpg">
+			<img id = "sky" src = "./imgs/hdr/home.jpg">
 
 			<img id = "screen_gif" src = "gifs/screen.gif">
 			<img id = "rotating_sphere_gif" src = "gifs/9xl7.gif">
@@ -107,8 +107,8 @@
 		
 		<!-- LINK -->
 			<a-entity
-				geometry="primitive: circle;
-						  radius: 5;"
+				 geometry="primitive: circle;
+						   radius: 5;"
 				 material="shader:gif;
 						   src:url(gifs/portal.gif);
 						   side: double;
