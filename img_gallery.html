@@ -20,6 +20,14 @@
 	<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
 	<script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
 	
+	<script>
+		AFRAME.registerComponent('auto-enter-vr', {
+		  init: function () {
+			this.el.sceneEl.enterVR();
+		  }
+		});
+	</script>
+	
 	<!--			Template for cards -->
 			<script id = "link" type = "text/html">
 				<a-entity class="link"
@@ -60,7 +68,8 @@
 		</script>
 </head>
 	
-	<a-scene stats loading-screen="enabled:true;
+	<a-scene stats auto-enter-vr
+			 loading-screen="enabled:true;
 							 dotsColor: red;
 							 backgroundColor: black">
 		
