@@ -8,6 +8,11 @@
     
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
 	
+	<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+	<script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
+	
+	<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> 
+	
 	<script type="text/javascript">
 	  AFRAME.registerComponent('navigate-on-click', {
 		schema: {
@@ -24,8 +29,6 @@
 		}
 	  });
 	</script>
-	
-	<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> 
 
 </head>
 
@@ -33,17 +36,19 @@
 	
     <a-scene stats
 			 loading-screen="enabled:true;
-			 		 dotsColor: red;
-					 backgroundColor: black" 
-			 raycaster = "far: 100;" cursor="rayOrigin: mouse" camera-position>
+							 dotsColor: red;
+							 backgroundColor: black" 
+			 raycaster = "far: 100; objects: .clickable" cursor="rayOrigin: mouse" camera-position>
 		
 		<a-assets>
-			<img id = "sky" src = "hdr.jpg">
+			<img id = "sky" src = "imgs/hdr/index.jpg">
+			<img id = "portal_gif" src = "gifs/portal.gif">
 		</a-assets>
 		
-		<a-sky src = "#sky" radius = "600"
-			    animation = "property: rotation;
-							to: 0 0 0;
+		<a-sky radius = "600"
+			   src = "#sky"
+			   animation = "property: rotation;
+							to: 0 -360 0;
 							dur: 1000000;
 							easing: linear;
 							loop: true">
@@ -62,32 +67,146 @@
 					  position="0 0 -3"
 					  geometry="primitive: ring;">
 				</a-entity>
+				
 				<a-cylinder height = "2"
 						radius = ".5"
-						color = "#ffffff">
+						color = "#ffffff"
+						statsic-body >
 				</a-cylinder>
 			</a-camera> <!-- /camera -->
 		</a-entity>
 		
-		<a-entity navigate-on-click="url: ./home.html">
-			<a-entity text = "value: \nTake me to HOME;
+			<a-entity 
+				  text = "value: How to use this website;
 						  color: #ffffff;
 						  shader: msdf;
 						  opacity: 0.9;
 						  align: center;
 						  wrapCount: 20;
-						  font: https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/vt323/VT323-Regular.json"
-				  geometry = "primitive: plane;
-							  width: auto;
-							  height: auto;"
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserratsubrayada/MontserratSubrayada-Regular.json"
 				  material = "shader: flat;
-							  opacity: 0.2"
+							  opacity: 0"
 				  look-at = "#cam"
-				  position = "10 2 -15"
+				  position = "0 15 -15"
+				  rotation = "0 0 0"
+				  scale = "20 20 20">
+			</a-entity>
+		
+			<a-entity 
+				  text = "value: \n\n1. Look around to explore.
+						  Move your head or click-and-drag the page (if on desktop, with no VR headset).
+						  
+						  2. The ring in the center of the screen is your cursor.
+						  
+						  3. You don't need any VR controller to use this website. Just move your head to place the cursor on top of things and look at them for 3 secs, this action will trigger a click event.
+						  
+						  4. On desktop use W-A-S-D keys to move around.;
+						  
+						  color: #ffffff;
+						  shader: msdf;
+						  opacity: 0.9;
+						  align: center;
+						  wrapCount: 40;
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserrat/Montserrat-Regular.json"
+				  material = "shader: flat;
+							  opacity: 0"
+				  look-at = "#cam"
+				  position = "0 2 -15"
+				  rotation = "0 0 0"
+				  scale = "25 25 25">
+			</a-entity>
+		
+			<a-entity 
+				  text = "value: CREDITS
+						  
+						  Space HDR - u/X_Joshi_X (Reddit)
+						  Music - Letting Go (CO.AG Music)
+						  
+						  Built with A-Frame by SHUBHAM KUMAR MAURYA;
+						  
+						  color: #ffffff;
+						  shader: msdf;
+						  opacity: 0.9;
+						  align: center;
+						  wrapCount: 40;
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserrat/Montserrat-Regular.json"
+				  material = "shader: flat;
+							  opacity: 0"
+				  look-at = "#cam"
+				  position = "-30 0 0"
+				  rotation = "0 0 0"
+				  scale = "25 25 25">
+			</a-entity>
+		
+			<a-entity 
+				  text = "value: NOW LOOK BEHIND YOU!;
+						  
+						  color: #ffffff;
+						  shader: msdf;
+						  opacity: 0.9;
+						  align: center;
+						  wrapCount: 40;
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserrat/Montserrat-Regular.json"
+				  material = "shader: flat;
+							  opacity: 0"
+				  look-at = "#cam"
+				  position = "0 -13 -15"
 				  rotation = "0 0 0"
 				  scale = "40 40 40">
 			</a-entity>
-		</a-entity>
+		
+			<a-entity 
+				  text = "value: This is a PORTAL.\nThis will take you places.\n Just look at it for 3 secs and you'll teleport.;
+						  
+						  color: #ffffff;
+						  shader: msdf;
+						  opacity: 0.9;
+						  align: center;
+						  wrapCount: 35;
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserrat/Montserrat-Regular.json"
+				  material = "shader: flat;
+							  opacity: 0"
+				  look-at = "#cam"
+				  position = "0 7 35"
+				  rotation = "0 0 0"
+				  scale = "20 20 20">
+			</a-entity>
+		
+		<!-- LINK -->
+			<a-entity
+				 class = "clickable"
+				 geometry="primitive: circle;
+						  radius: 5;"
+				 material="shader:gif;
+						   src: #portal_gif;
+						   side: double;
+						   blending: additive;
+						   opacity: 0.9"
+				position = "0 0 35"
+				rotation = "0 0 0"
+				
+			    look-at = "#cam"
+					  
+				navigate-on-click="url: ./home.html">
+				
+				<a-entity 
+				  text = "value: \nHOME;
+						  
+						  color: #ffffff;
+						  shader: msdf;
+						  opacity: 0.9;
+						  align: center;
+						  wrapCount: 40;
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserrat/Montserrat-Regular.json"
+				  material = "shader: flat;
+							  opacity: 0"
+				  look-at = "#cam"
+				  position = "0 0 0"
+				  rotation = "0 0 0"
+				  scale = "20 20 20">
+				</a-entity>
+				
+			</a-entity>
 
     </a-scene>
 	
