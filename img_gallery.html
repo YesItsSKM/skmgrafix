@@ -20,14 +20,6 @@
 	<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
 	<script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
 	
-	<script>
-		AFRAME.registerComponent('auto-enter-vr', {
-		  init: function () {
-			this.el.sceneEl.enterVR();
-		  }
-		});
-	</script>
-	
 	<!--			Template for cards -->
 			<script id = "link" type = "text/html">
 				<a-entity class="link"
@@ -66,6 +58,14 @@
 			}
 		  });
 		</script>
+	
+		<script type="text/javascript">
+			AFRAME.registerComponent('auto-enter-vr', {
+			  init: function () {
+				this.el.sceneEl.enterVR();
+			  }
+			});
+		</script>
 </head>
 	
 	<a-scene stats auto-enter-vr
@@ -77,18 +77,19 @@
 			
 			<audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
 
-			<!-- Images. -->
-			<img id="blackhole" src="imgs/360/BlackHole.jpg">
-			<img id="blackhole-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-			<img id="desert" src="imgs/360/360-Test.jpg">
-			<img id="desert-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
+		<!-- Images. -->
+			<img id="blackhole" src="./imgs/360/BlackHole.jpg">
+			<img id="blackhole-thumb" src="./imgs/360/thumbs/blackhole-thumb.png">
 			
-			<img id="link_img" src="hdr.jpg"> 
+			<img id="desert" src="./imgs/360/desert.jpg">
+			<img id="desert-thumb" src="./imgs/360/thumbs/desert-thumb.png">
 			
+			<img id="illusions" src = "./imgs/360/illusions.jpg"> 
+			<img id="illusions-thumb" src="./imgs/360/thumbs/illusions-thumb.png">
 		</a-assets>
 
   <!-- 360-degree image. -->
-  		<a-sky id="image-360" radius="100" src="#blackhole"
+  		<a-sky id="image-360" radius="100" src="#illusions"
 			   animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
 			   animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"
 			   _delay = "300"
@@ -96,7 +97,8 @@
 							to: 0 -360 0;
 							dur: 1000000;
 							easing: linear;
-							loop: true"></a-sky>
+							loop: true">
+		</a-sky>
 		
 	<!-- LINK -->
 			<a-entity
@@ -113,8 +115,27 @@
 			    look-at = "#cam"
 					  
 				navigate-on-click="url: ./home.html">
+				
+				<a-entity 
+				  text = "value: \nHOME;
+						  
+						  color: #ffffff;
+						  shader: msdf;
+						  opacity: 0.9;
+						  align: center;
+						  wrapCount: 40;
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserrat/Montserrat-Regular.json"
+				  material = "shader: flat;
+							  opacity: 0"
+				  look-at = "#cam"
+				  position = "0 0 0"
+				  rotation = "0 0 0"
+				  scale = "5 5 5">
+				</a-entity>
+				
 			</a-entity>
 		
+	<!-- THUMBS -->
 		<a-entity id = "links"
 				  layout = "type: circle;
 							radius: 1;
@@ -122,13 +143,14 @@
 				  position = "0 1 -3">
 			<a-entity template = "src: #link" data-thumb = "#blackhole-thumb" data-src = "#blackhole"></a-entity>
 			<a-entity template = "src: #link" data-thumb = "#desert-thumb" data-src = "#desert"></a-entity>
+			<a-entity template = "src: #link" data-thumb = "#illusions-thumb" data-src = "#illusions"></a-entity>
 		</a-entity>
 
   <!-- Camera + Cursor. -->
 		<a-camera id = "cam"
 				  looks-control
 				  wasd-controls = "acceleration:100">
-				<a-entity
+		  		<a-entity
 					  animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.05 0.05 0.05 to: 0.1 0.1 0.1"
 					  animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from:  0.1 0.1 0.1; to: 0.05 0.05 0.05"
 					  animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 0.05 0.05 0.05"
