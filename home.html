@@ -173,16 +173,47 @@
 							loop: true">
 		</a-entity>
 		
-		<a-entity text = "value: Shubham Kumar Maurya;
+		<a-entity
+			  geometry="primitive: plane;
+						height:20;
+						width:22;"
+			  material="shader: gif;
+						src: #intro_gif;
+						side: double;
+						opacity: 0.9;
+						blending: additive"
+			  look-at = "#cam"
+			  position = "-17 35 -5"
+			  rotation = "0 85 0">
+
+			<a-entity text = "value: Hi, I'm Shubham Kumar Maurya.;
 						  color: #ffffff;
 						  shader: msdf;
 						  opacity: 0.9;
-						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/vt323/VT323-Regular.json"
-				  look-at = "#cam"
-				  position = "-20 30 -15"
-				  rotation = "0 90 0"
-				  scale = "40 40 40">
+						 font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/vt323/VT323-Regular.json"
+				  position = "5 11 -5"
+				  scale = "40 40 40">			
+			</a-entity>
+
+			<a-entity 
+			  text = "value: Welcome to my portfolio website.
+					  \nI'm a final year student of Computer Science and Engineering (B.Tech.) at KIIT-DU, Bhubaneswar.
+					  \nI'm a Virtual Reality enthusiast (which you might have guessed by the website).
+					  I love making VR experiences and I aspire to be a VR developer and content creator.
+					  \nI also do 3D modeling and love computer programming.
+					  My weapon of choice - C++.;
+
+					  color: #ffffff;
+					  shader: msdf;
+					  opacity: 0.9;
+					  align: center;
+					  wrapCount: 40;
+					 font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserrat/Montserrat-Regular.json"
+			  material = "shader: flat;
+						  opacity: 0"
+			  scale = "20 20 20">
 		</a-entity>
+	</a-entity>
 
     </a-scene>
 	
