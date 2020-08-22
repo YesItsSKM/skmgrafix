@@ -14,6 +14,11 @@
 	
 	<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> 
 	
+	<script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+	
+	<script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+	
 	<script type="text/javascript">
 	  AFRAME.registerComponent('navigate-on-click', {
 		schema: {
@@ -30,6 +35,41 @@
 		}
 	  });
 	</script>
+	
+	<!--	Template for social media links -->
+			<script id = "link" type = "text/html">
+				<a-entity class="link"
+					  geometry = "primitive: circle;
+								  radius: 0.5;"
+					  material = "shader: flat;
+								  src: ${icon};
+								  side: double;"
+					  position = "6 0 0"
+					  look-at  = "#cam"
+					  scale = "1 1 1"	
+						  
+					  event-set__mouseenter = "scale: 1.3 1.3 1"
+					  event-set__mouseleave = "scale: 1 1 1"
+						  
+					  navigate-on-click = "url: ${url}">
+				</a-entity>
+
+				<a-entity 
+				  text = "value: \n${value};
+						  
+						  color: #ffffff;
+						  shader: msdf;
+						  opacity: 0.9;
+						  align: left;
+						  wrapCount: 40;
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserrat/Montserrat-Regular.json"
+				  material = "shader: flat;
+							  opacity: 0"
+				  position = "12 0 0"
+				  scale = "10 10 10">
+				</a-entity>
+
+			</script>
 
 </head>
 
@@ -44,6 +84,14 @@
 		<a-assets>
 			<img id = "sky" src = "./imgs/hdr/index.jpg">
 			<img id = "portal_gif" src = "./gifs/portal.gif">
+			<img id = "skm_gif" src = "gifs/skm.gif">
+			
+			<img id="email" src="./imgs/icons/email.png">
+			<img id="github" src="./imgs/icons/github.png">
+			<img id="instagram" src="./imgs/icons/instagram.png">
+			<img id="linkedin" src="./imgs/icons/linkedin.png">
+			<img id="sketchfab" src="./imgs/icons/sketchfab.png">
+			<img id="youtube" src="./imgs/icons/youtube.png">
 		</a-assets>
 		
 		<a-sky radius = "600"
@@ -172,6 +220,48 @@
 				  rotation = "0 0 0"
 				  scale = "20 20 20">
 			</a-entity>
+		
+		<a-entity
+				 geometry="primitive: plane;
+						   width: 7;
+						   height: 8"
+				 material="shader:gif;
+						   src: #skm_gif;
+						   side: double;
+						   opacity: 0.9;
+						   blending: additive"
+				position = "10 2 10"
+				rotation = "0 -90 0">
+			<a-entity 
+				  text = "value: \nThis is me, the creator of this virtual experience.;
+						  
+						  color: #ffffff;
+						  shader: msdf;
+						  opacity: 0.9;
+						  align: center;
+						  wrapCount: 40;
+						  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/montserrat/Montserrat-Regular.json"
+				  material = "shader: flat;
+							  opacity: 0"
+				  position = "0 4.5 0"
+				  rotation = "0 0 0"
+				  scale = "10 10 10">
+				</a-entity>
+			
+			<!-- SOCIALS -->
+			<a-entity id = "links"
+				  layout = "type: box;
+							margin: 1.4;
+							columns: 1;
+							align: center;">
+				<a-entity template = "src: #link" data-icon = "#email" data-value = "yesitsskm@gmail.com" data-url = "mailto:yesitsskm@gmail.com"></a-entity>
+				<a-entity template = "src: #link" data-icon = "#github" data-value = "github.com/yesitsskm" data-url = "https://github.com/yesitsskm"></a-entity>
+				<a-entity template = "src: #link" data-icon = "#instagram" data-value = "@parallax.animations" data-url = "https://www.instagram.com/parallax.animations/"></a-entity>
+				<a-entity template = "src: #link" data-icon = "#linkedin" data-value = "linkedin.com/in/yesitsskm" data-url = "https://www.linkedin.com/in/yesitsskm"></a-entity>
+				<a-entity template = "src: #link" data-icon = "#sketchfab" data-value = "sketchfab.com/yesitsskm" data-url = "https://sketchfab.com/yesitsskm"></a-entity>
+				<a-entity template = "src: #link" data-icon = "#youtube" data-value = "Parallax Animations" data-url = "https://www.youtube.com/channel/UCEWUO4EEAganduzMOSgn97g"></a-entity>
+			</a-entity>
+		</a-entity>
 		
 		<!-- LINK -->
 			<a-entity
