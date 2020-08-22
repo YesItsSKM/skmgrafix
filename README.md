@@ -5,5 +5,7 @@ I'm learning and practicing skills such as **3D modeling, Environment design, Wo
 
 **Get immersed: https://skmgrafix.com/**
 
-## SHOWCASE
+### SHOWCASE
 ![](display-imgs/display-1.gif)
+![](display-imgs/display-2.gif)
+![](display-imgs/socials.jpg)
