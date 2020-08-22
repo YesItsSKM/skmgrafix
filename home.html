@@ -62,6 +62,7 @@
 			<img id = "rotating_sphere_gif" src = "gifs/9xl7.gif">
 			<img id = "floor_gif" src = "gifs/MPiJ.gif">
 			<img id = "intro_gif" src="./gifs/intro-screen.gif">
+			<img id = "skm_gif" src="./gifs/skm-4.gif">
 			
 			<audio id = "ambient_sound" src = "sound/letting_go.mp3" preload="auto"></audio>
 		</a-assets>
@@ -172,6 +173,19 @@
 							dur: 50000;
 							easing: linear;
 							loop: true">
+		</a-entity>
+		
+		<a-entity
+				 geometry="primitive: plane;
+						   width: 15;
+						   height: 17"
+				 material="shader:gif;
+						   src: #skm_gif;
+						   side: double;
+						   opacity: 0.9;
+						   blending: additive"
+				position = "15 35 10"
+				rotation = "20 -120 0">
 		</a-entity>
 		
 		<a-entity
